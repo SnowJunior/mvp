@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:454972861794:android:9c0814198ed74bc219503b",
+        "mobilesdk_app_id": "1:454972861794:android:e6342d446a238d0619503b",
         "android_client_info": {
-          "package_name": "com.example.updater"
+          "package_name": "com.mabili.supplier"
         }
       },
       "oauth_client": [
