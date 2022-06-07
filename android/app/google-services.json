@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "454972861794",
+    "project_id": "supplier-fb5de",
+    "storage_bucket": "supplier-fb5de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454972861794:android:9c0814198ed74bc219503b",
+        "android_client_info": {
+          "package_name": "com.example.updater"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "454972861794-89qf2mo7d0pgfqdprulnmeopp37hoagu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByyRMqNW3W4EEvtzgo5tb7rmefQ8I2ymE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "454972861794-89qf2mo7d0pgfqdprulnmeopp37hoagu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
