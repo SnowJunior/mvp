@@ -7,7 +7,7 @@ class OrderList extends StatelessWidget {
   OrderList({Key? key}) : super(key: key);
 
   final Stream<QuerySnapshot> ordersList =
-      FirebaseFirestore.instance.collection('FruitList').snapshots();
+      FirebaseFirestore.instance.collection('Order').snapshots();
 
   @override
   Widget build(BuildContext context) {
