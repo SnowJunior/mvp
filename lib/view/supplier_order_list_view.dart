@@ -65,11 +65,11 @@ class OrderList extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => SupplierScreen()),
+                            builder: (context) => const InvoicePrint()),
                       );
                     },
                     child: Text(
-                      "Supplier",
+                      "Invoice",
                       style: regularStyle,
                     ),
                   ),
