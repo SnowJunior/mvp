@@ -157,6 +157,8 @@ class _CustomerScreemState extends State<CustomerScreen> {
                       height: 30,
                     ),
                     MaterialButton(
+                      shape: const StadiumBorder(),
+                      color: Colors.blue,
                       onPressed: () async {
                         // date definition
                         final date = DateTime.now();
