@@ -19,8 +19,10 @@ dependencies:
   # Logic
   cloud_firestore: ^3.1.14
   firebase_core: ^1.16.0
-  # UI
   pdf: ^3.8.1
+  intl: ^0.17.0
+  open_file: ^3.2.1
+  path_provider: ^2.0.11
 
 dev_dependencies:
   flutter_test:

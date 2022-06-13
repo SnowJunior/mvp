@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:updater/constants/constants.dart';
 import 'package:updater/view/supplier_order_list_view.dart';
 
+import '../api/pdf_api.dart';
+import '../api/pdf_invoice_api.dart';
+import '../model/customer_view_model.dart';
+import '../model/invoice_view_model.dart';
+import '../model/supplier_view_model.dart';
+
 class CustomerScreen extends StatefulWidget {
   const CustomerScreen({Key? key}) : super(key: key);
 
@@ -147,6 +153,86 @@ class _CustomerScreemState extends State<CustomerScreen> {
                         style: regularStyle,
                       ),
                     ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    MaterialButton(
+                      onPressed: () async {
+                        // date definition
+                        final date = DateTime.now();
+                        final dueDate = date.add(const Duration(days: 7));
+
+                        // Pdf details Creation
+
+                        final invoice = Invoice(
+                          supplier: const Supplier(
+                              name: "Joseph Mabili",
+                              address: "Somewhere In Kenya",
+                              paymentInfo: "0794329992"),
+                          customer: Customer(
+                            name: userNameController.text,
+                            address: "Kilifi",
+                          ),
+                          info: InvoiceInfo(
+                              date: date,
+                              dueDate: dueDate,
+                              description: "My description......",
+                              number: '${DateTime.now().year}-9090'),
+                          items: [
+                            InvoiceItem(
+                              description: 'Mango',
+                              date: DateTime.now(),
+                              quantity: 3,
+                              unitPrice: 5.99,
+                            ),
+                            InvoiceItem(
+                              description: 'Dates',
+                              date: DateTime.now(),
+                              quantity: 8,
+                              unitPrice: 0.99,
+                            ),
+                            InvoiceItem(
+                              description: 'Orange',
+                              date: DateTime.now(),
+                              quantity: 3,
+                              unitPrice: 2.99,
+                            ),
+                            InvoiceItem(
+                              description: 'Apple',
+                              date: DateTime.now(),
+                              quantity: 8,
+                              unitPrice: 3.99,
+                            ),
+                            InvoiceItem(
+                              description: 'Guavas',
+                              date: DateTime.now(),
+                              quantity: 1,
+                              unitPrice: 1.59,
+                            ),
+                            InvoiceItem(
+                              description: 'Blue Berries',
+                              date: DateTime.now(),
+                              quantity: 5,
+                              unitPrice: 0.99,
+                            ),
+                            InvoiceItem(
+                              description: 'Lemon',
+                              date: DateTime.now(),
+                              quantity: 4,
+                              unitPrice: 1.29,
+                            ),
+                          ],
+                        );
+                        final pdfProfile =
+                            await PdfInvoiceApi.generate(invoice);
+
+                        PdfApi.openFile(pdfProfile);
+                      },
+                      child: Text(
+                        "Print Invoice",
+                        style: regularStyle,
+                      ),
+                    ),
                   ],
                 ),
               ],
@@ -216,7 +302,7 @@ class _CustomerScreemState extends State<CustomerScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: ((context) =>  OrderList()),
+            builder: ((context) => OrderList()),
           ),
         );
       });
