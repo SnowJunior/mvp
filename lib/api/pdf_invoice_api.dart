@@ -130,8 +130,8 @@ class PdfInvoiceApi {
         items.description,
         Utils.formatDate(items.date),
         '${items.quantity}',
-        ' ${items.unitPrice}',
-        ' ${total.toStringAsFixed(2)}',
+        'Kshs ${items.unitPrice}',
+        'Kshs ${total.toStringAsFixed(2)}',
       ];
     }).toList();
 
