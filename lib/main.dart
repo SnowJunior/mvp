@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:updater/view/customer.dart';
+import 'package:updater/screens/sign_up_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,15 +13,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: const ColorScheme.light(),
-      ),
-      darkTheme: ThemeData.dark().copyWith(
-        colorScheme: const ColorScheme.dark(),
-      ),
-      home: const CustomerScreen(),
+      home:  SignUpScreen(),
     );
   }
 }
