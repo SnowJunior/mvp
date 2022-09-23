@@ -1,9 +1,6 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:updater/constants/constants.dart';
-
-import 'sign_in_screen.dart';
+import 'package:updater/screens/password_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -148,23 +145,37 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
 
                     const SizedBox(
-                      height: 20,
+                      height: 40,
                     ),
 
-                    MaterialButton(
-                        shape: const StadiumBorder(),
-                        color: Colors.black,
-                        child: const Text(
-                          'Register',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (builder) => const SignInScreen(),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Row(
+                        children: [
+                          Text(
+                            'Next',
+                            style: regularStyle,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: ((context) =>
+                                      const PasswordScreen()),
+                                ),
+                              );
+                            },
+                            icon: const Icon(
+                              Icons.arrow_forward_ios_outlined,
                             ),
-                          );
-                        })
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               )

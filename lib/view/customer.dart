@@ -9,7 +9,6 @@ import '../data/model/customer_view_model.dart';
 import '../data/model/invoice_view_model.dart';
 import '../data/model/supplier_view_model.dart';
 
-
 class CustomerScreen extends StatefulWidget {
   const CustomerScreen({Key? key}) : super(key: key);
 

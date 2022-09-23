@@ -19,74 +19,80 @@ class _PasswordScreenState extends State<PasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-          child: SafeArea(
-        child: Column(children: [Column(children: [
+        child: SafeArea(
+          child: Column(
+            children: [
+              Column(
+                children: [
+                  // Set Password
+                  TextFormField(
+                    controller: password,
+                    validator: (value) {
+                      if (!RegExp(passwordRegex).hasMatch(value!)) {
+                        return 'Password is required';
+                      } else {
+                        return null;
+                      }
+                    },
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue, width: 1.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide:
+                            const BorderSide(color: Colors.black, width: 1.0),
+                      ),
+                      label: Text(
+                        'Set Password',
+                        style: labelStyle,
+                      ),
+                    ),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                  ),
+                  const SizedBox(
+                    height: 20,
 
-          // Set Password
-           TextFormField(
-                controller: password,
-                validator: (value) {
-                  if (!RegExp(passwordRegex).hasMatch(value!)) {
-                    return 'Password is required';
-                  } else {
-                    return null;
-                  }
-                },
-                obscureText: true,
-                decoration: InputDecoration(
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue, width: 1.0),
+                    // Confirm Password
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide:
-                        const BorderSide(color: Colors.black, width: 1.0),
+                  TextFormField(
+                    validator: (value) {
+                      if (value == null && value != password.text) {
+                        return 'passwords do not match';
+                      } else {
+                        return null;
+                      }
+                    },
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue, width: 1.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide:
+                            const BorderSide(color: Colors.black, width: 1.0),
+                      ),
+                      label: Text(
+                        'Confirm Password',
+                        style: labelStyle,
+                      ),
+                    ),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
-                  label: Text(
-                    'Set Password',
-                    style: labelStyle,
+                  const SizedBox(
+                    height: 20,
                   ),
-                ),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+                  const SizedBox(
+                    height: 23,
+                  ),
+                ],
               ),
-              const SizedBox(
-                height: 20,
-
-                // Confirm Password
-              ),
-              TextFormField(
-                validator: (value) {
-                  if (value == null && value != password.text) {
-                    return 'passwords do not match';
-                  } else {
-                    return null;
-                  }
-                },
-                obscureText: true,
-                decoration: InputDecoration(
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue, width: 1.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide:
-                        const BorderSide(color: Colors.black, width: 1.0),
-                  ),
-                  label: Text(
-                    'Confirm Password',
-                    style: labelStyle,
-                  ),
-                ),
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const SizedBox(
-                height: 23,
-              ),
-        ],)]),
-      )),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
