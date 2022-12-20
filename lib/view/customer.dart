@@ -5,9 +5,9 @@ import 'package:updater/view/supplier_order_list_view.dart';
 
 import '../api/pdf_api.dart';
 import '../api/pdf_invoice_api.dart';
-import '../data/model/customer_view_model.dart';
-import '../data/model/invoice_view_model.dart';
-import '../data/model/supplier_view_model.dart';
+import '../model/customer_view_model.dart';
+import '../model/invoice_view_model.dart';
+import '../model/supplier_view_model.dart';
 
 class CustomerScreen extends StatefulWidget {
   const CustomerScreen({Key? key}) : super(key: key);
@@ -126,7 +126,7 @@ class _CustomerScreemState extends State<CustomerScreen> {
                 Row(
                   children: [
                     MaterialButton(
-                      shape: const StadiumBorder(),
+                      shape: StadiumBorder(),
                       onPressed: _populate,
                       child: Text(
                         "Order",
@@ -137,7 +137,7 @@ class _CustomerScreemState extends State<CustomerScreen> {
                       width: 20.0,
                     ),
                     MaterialButton(
-                      shape: const StadiumBorder(),
+                      shape: StadiumBorder(),
                       onPressed: () {
                         order.add({
                           'name': userNameController.text,
@@ -157,7 +157,7 @@ class _CustomerScreemState extends State<CustomerScreen> {
                       height: 30,
                     ),
                     MaterialButton(
-                      shape: const StadiumBorder(),
+                      shape: StadiumBorder(),
                       color: Colors.blue,
                       onPressed: () async {
                         // date definition
@@ -251,8 +251,8 @@ class _CustomerScreemState extends State<CustomerScreen> {
         ..hideCurrentSnackBar()
         ..showSnackBar(
           SnackBar(
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
+            shape: RoundedRectangleBorder(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
               ),

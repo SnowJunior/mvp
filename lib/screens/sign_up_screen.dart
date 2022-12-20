@@ -17,81 +17,62 @@ TextEditingController userName = TextEditingController();
 TextEditingController email = TextEditingController();
 TextEditingController mobileNo = TextEditingController();
 
+// Form key
+final _signUpFormKey = GlobalKey<FormState>();
+
+
+
+
 class _SignUpScreenState extends State<SignUpScreen> {
+  bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: Column(
-                  children: [
-                    const Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        'SIGN UP',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-
-                    // Register Form for new user
-                    // UserName
-                    TextFormField(
-                      validator: (value) {
-                        if (value == null && value!.isEmpty) {
-                          return 'Please fill in Name';
-                        } else if (value.length < 2 && value.length > 20) {
-                          return 'Name must be more than 2 characters';
-                        } else {
-                          return null;
-                        }
-                      },
-                      decoration: InputDecoration(
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.blue,
-                            width: 1.0,
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: const BorderSide(
-                            color: Colors.black,
-                            width: 1.0,
-                          ),
-                        ),
-                        label: Text(
-                          'FullName',
-                          style: labelStyle,
+          child: Form(
+            key: _signUpFormKey,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Column(
+                    children: [
+                      const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'SIGN UP',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-
-                    // Email set
-                    TextFormField(
-                      validator: (value) {
-                        if (!RegExp(emailRegex)
-                            .hasMatch(value!.trim().toLowerCase())) {
-                          return 'email must be valid';
-                        } else {
-                          return null;
-                        }
-                      },
-                      decoration: InputDecoration(
+                      const SizedBox(
+                        height: 20,
+                      ),
+          
+                      // Register Form for new user
+                      // UserName
+                      TextFormField(
+                        validator: (value) {
+                          if (value == null && value!.isEmpty) {
+                            return 'Please fill in Name';
+                          } else if (value.length < 2 && value.length > 20) {
+                            return 'Name must be more than 2 characters';
+                          } else {
+                            return null;
+                          }
+                        },
+                        decoration: InputDecoration(
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.blue,
+                              width: 1.0,
+                            ),
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide: const BorderSide(
@@ -99,90 +80,133 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               width: 1.0,
                             ),
                           ),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.blue,
+                          label: Text(
+                            'FullName',
+                            style: labelStyle,
+                          ),
+                        ),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+          
+                      // Email set
+                      TextFormField(
+                        enableSuggestions: true,
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (!RegExp(emailRegex)
+                              .hasMatch(value!.trim().toLowerCase())) {
+                            return 'email must be valid';
+                          } else {
+                            return null;
+                          }
+                        },
+                        decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: const BorderSide(
+                                color: Colors.black,
+                                width: 1.0,
+                              ),
                             ),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.blue,
+                              ),
+                            ),
+                            label: Text(
+                              'Email Address',
+                              style: labelStyle,
+                            )),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+          
+                      // Setup Mobile number
+                      TextFormField(
+                        controller: mobileNo,
+                        validator: (value) {
+                          if (value!.isEmpty &&
+                              value.length < 2 &&
+                              value.length > 10) {
+                            return 'Enter a valid phone Number';
+                          } else {
+                            return null;
+                          }
+                        },
+                        decoration: InputDecoration(
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.blue, width: 1.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide:
+                                const BorderSide(color: Colors.black, width: 1.0),
                           ),
                           label: Text(
-                            'Email Address',
+                            'Enter Mobile Number',
                             style: labelStyle,
-                          )),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-
-                    // Setup Mobile number
-                    TextFormField(
-                      controller: mobileNo,
-                      validator: (value) {
-                        if (value!.isEmpty &&
-                            value.length < 2 &&
-                            value.length > 10) {
-                          return 'Enter a valid phone Number';
-                        } else {
-                          return null;
-                        }
-                      },
-                      decoration: InputDecoration(
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.blue, width: 1.0),
+                          ),
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.black, width: 1.0),
-                        ),
-                        label: Text(
-                          'Enter Mobile Number',
-                          style: labelStyle,
-                        ),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                    ),
-
-                    const SizedBox(
-                      height: 40,
-                    ),
-
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Row(
-                        children: [
-                          Text(
-                            'Next',
-                            style: regularStyle,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: ((context) =>
-                                      const PasswordScreen()),
-                                ),
-                              );
-                            },
-                            icon: const Icon(
-                              Icons.arrow_forward_ios_outlined,
+          
+                      const SizedBox(
+                        height: 40,
+                      ),
+          
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: Row(
+                          children: [
+                            Text(
+                              'Next',
+                              style: regularStyle,
                             ),
-                          ),
-                        ],
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: ((context) =>
+                                        const PasswordScreen()),
+                                  ),
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.arrow_forward_ios_outlined,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              )
-            ],
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  void submit() {
+    if (_signUpFormKey.currentState!.validate() == true) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: ((context) => const PasswordScreen()),
+        ),
+      );
+    }
   }
 }

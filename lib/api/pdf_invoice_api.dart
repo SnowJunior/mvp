@@ -4,9 +4,9 @@ import 'package:pdf/widgets.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 
-import '../data/model/customer_view_model.dart';
-import '../data/model/invoice_view_model.dart';
-import '../data/model/supplier_view_model.dart';
+import '../model/customer_view_model.dart';
+import '../model/invoice_view_model.dart';
+import '../model/supplier_view_model.dart';
 import '../utils.dart';
 import 'pdf_api.dart';
 
